@@ -51,5 +51,6 @@
     <script src="/app/controllers/base_controller.js"></script>
     <script src="/app/controllers/windows_controller.js"></script>
     <script src="/app/controllers/components_controller.js"></script>
+    <script src="/app/controllers/sectors_controller.js"></script>
 </body>
 </html>

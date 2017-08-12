@@ -1,0 +1,19 @@
+<div class="container-fluid">
+	<h3 class="cls-title">{{title}}</h3>
+
+	<form class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label>Nombre:</label>
+				<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="100">
+			</div>
+		</div>
+	</form>
+
+	<div class="row cls-toolbar-gray">
+		<div class="col-sm-12">
+			<button class="btn btn-primary" ng-click="save()">Guardar</button>
+			<a class="btn btn-warning" href="#/sectors">Cerrar</a>
+		</div>
+	</div>
+</div>

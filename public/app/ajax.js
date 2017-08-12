@@ -44,85 +44,25 @@ app.factory('ComponentService', ['$http', function($http) {
 	} 
 }]);
 
-/*
-app.factory('UserService', ['$http', function($http) {
+app.factory('SectorService', ['$http', function($http) {
 	return {
 		get      : function (data) {
-			return $http.get('users/'+ data.id);
+			return $http.get('sectors/'+ data.id);
 		},
 		save     : function (data) {
-			return (data.id) ? $http.patch('users/'+ data.id, data) : $http.post('users', data);
+			return (data.id) ? $http.patch('sectors/'+ data.id, data) : $http.post('sectors', data);
 		},
 		read     : function(data) {
-			return $http.get('users?'+ jQuery.param(data), data);
+			return $http.get('sectors?'+ jQuery.param(data), data);
 		},
 		delete   : function(data) {
-			return $http.delete('users/'+ data.id);
+			return $http.delete('sectors/'+ data.id);
 		},
 		activate : function(data) {
-			return $http.post('users/'+ data.id +'/activate');
+			return $http.post('sectors/'+ data.id +'/activate');
 		},
 		deactivate : function(data) {
-			return $http.post('users/'+ data.id +'/deactivate');
-		},
-		reset_pass : function (data) {
-			return $http.post('users/'+ data.id +'/reset_pass', data);
-		}
-	} 
-}]);*/
-
-
-/*app.factory('StateService', ['$http', function($http) {
-	return {
-		get      : function (data) {
-			return $http.get('states/'+ data.id);
-		},
-		save     : function (data) {
-			return (data.id) ? $http.patch('states/'+ data.id, data) : $http.post('states', data);
-		},
-		read     : function(data) {
-			return $http.get('states?'+ jQuery.param(data), data);
-		},
-		delete   : function(data) {
-			return $http.delete('states/'+ data.id);
+			return $http.post('sectors/'+ data.id +'/deactivate');
 		}
 	} 
 }]);
-
-app.factory('CityService', ['$http', function($http) {
-	return {
-		get      : function (data) {
-			return $http.get('cities/'+ data.id);
-		},
-		save     : function (data) {
-			return (data.id) ? $http.patch('cities/'+ data.id, data) : $http.post('cities', data);
-		},
-		read     : function(data) {
-			return $http.get('cities?'+ jQuery.param(data), data);
-		},
-		delete   : function(data) {
-			return $http.delete('cities/'+ data.id);
-		}
-	} 
-}]);
-
-app.factory('PeriodService', ['$http', function($http) {
-	return {
-		get      : function (data) {
-			return $http.get('periods/'+ data.id);
-		},
-		save     : function (data) {
-			return (data.id) ? $http.patch('periods/'+ data.id, data) : $http.post('periods', data);
-		},
-		read     : function(data) {
-			return $http.get('periods?'+ jQuery.param(data), data);
-		},
-		delete   : function(data) {
-			return $http.delete('periods/'+ data.id);
-		},
-		generate : function(data) {
-			return $http.post('periods/generate', data);
-		}
-	} 
-}]);
-*/

@@ -24,3 +24,7 @@ Route::post('windows/{id}/deactivate', 'WindowsController@deactivate');
 Route::resource('components', 'ComponentsController');
 Route::post('components/{id}/activate', 'ComponentsController@activate');
 Route::post('components/{id}/deactivate', 'ComponentsController@deactivate');
+
+Route::resource('sectors', 'SectorsController');
+Route::post('sectors/{id}/activate', 'SectorsController@activate');
+Route::post('sectors/{id}/deactivate', 'SectorsController@deactivate');
