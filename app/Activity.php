@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sector extends Model
+class Activity extends Model
 {
     protected $guarded = ['id'];
 
-    public function activities()
+    public function sector()
 	{
-		return $this->hasMany('App\Activity');
+		return $this->belongsTo('App\Sector');
 	}
 }

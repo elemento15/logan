@@ -28,3 +28,7 @@ Route::post('components/{id}/deactivate', 'ComponentsController@deactivate');
 Route::resource('sectors', 'SectorsController');
 Route::post('sectors/{id}/activate', 'SectorsController@activate');
 Route::post('sectors/{id}/deactivate', 'SectorsController@deactivate');
+
+Route::resource('activities', 'ActivitiesController');
+Route::post('activities/{id}/activate', 'ActivitiesController@activate');
+Route::post('activities/{id}/deactivate', 'ActivitiesController@deactivate');

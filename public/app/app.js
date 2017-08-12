@@ -57,6 +57,19 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 				templateUrl: '/partials/sectors/edit.html'
 			})
 
+		.when('/activities',{
+				controller: 'ActivitiesController',
+				templateUrl: '/partials/activities/index.html'
+			})
+		.when('/activities-new',{
+				controller: 'ActivitiesController',
+				templateUrl: '/partials/activities/edit.html'
+			})
+		.when('/activities-edit/:id',{
+				controller: 'ActivitiesController',
+				templateUrl: '/partials/activities/edit.html'
+			})
+
 		.otherwise({ redirectTo: '/' });
 
 	// regular expression definitions

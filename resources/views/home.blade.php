@@ -30,6 +30,7 @@
                             <li><a href="#/windows">Ventanillas</a></li>
                             <li><a href="#/components">Componentes</a></li>
                             <li><a href="#/sectors">Sectores</a></li>
+                            <li><a href="#/activities">Actividades</a></li>
                         </ul>
                     </li>
                 </ul>

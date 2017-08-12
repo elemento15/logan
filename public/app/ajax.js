@@ -66,3 +66,26 @@ app.factory('SectorService', ['$http', function($http) {
 		}
 	} 
 }]);
+
+app.factory('ActivityService', ['$http', function($http) {
+	return {
+		get      : function (data) {
+			return $http.get('activities/'+ data.id);
+		},
+		save     : function (data) {
+			return (data.id) ? $http.patch('activities/'+ data.id, data) : $http.post('activities', data);
+		},
+		read     : function(data) {
+			return $http.get('activities?'+ jQuery.param(data), data);
+		},
+		delete   : function(data) {
+			return $http.delete('activities/'+ data.id);
+		},
+		activate : function(data) {
+			return $http.post('activities/'+ data.id +'/activate');
+		},
+		deactivate : function(data) {
+			return $http.post('activities/'+ data.id +'/deactivate');
+		}
+	} 
+}]);
