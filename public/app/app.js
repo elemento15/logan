@@ -17,17 +17,17 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 				controller: 'HomeController',
 				templateUrl: '/partials/home.html'
 			})
-		.when('/accounts',{
-				controller: 'AccountsController',
-				templateUrl: '/partials/accounts/index.html'
+		.when('/windows',{
+				controller: 'WindowsController',
+				templateUrl: '/partials/windows/index.html'
 			})
-		.when('/accounts-new',{
-				controller: 'AccountsController',
-				templateUrl: '/partials/accounts/edit.html'
+		.when('/windows-new',{
+				controller: 'WindowsController',
+				templateUrl: '/partials/windows/edit.html'
 			})
-		.when('/accounts-edit/:id',{
-				controller: 'AccountsController',
-				templateUrl: '/partials/accounts/edit.html'
+		.when('/windows-edit/:id',{
+				controller: 'WindowsController',
+				templateUrl: '/partials/windows/edit.html'
 			})
 
 		.otherwise({ redirectTo: '/' });

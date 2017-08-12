@@ -49,5 +49,6 @@
     <!-- controllers -->
     <script src="/app/controllers/home_controller.js"></script>
     <script src="/app/controllers/base_controller.js"></script>
+    <script src="/app/controllers/windows_controller.js"></script>
 </body>
 </html>

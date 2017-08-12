@@ -1,11 +1,27 @@
-/*app.factory('RoleService', ['$http', function($http) {
+app.factory('WindowService', ['$http', function($http) {
 	return {
-		read : function(data) {
-			return $http.get('roles?'+ jQuery.param(data), data);
+		get      : function (data) {
+			return $http.get('windows/'+ data.id);
+		},
+		save     : function (data) {
+			return (data.id) ? $http.patch('windows/'+ data.id, data) : $http.post('windows', data);
+		},
+		read     : function(data) {
+			return $http.get('windows?'+ jQuery.param(data), data);
+		},
+		delete   : function(data) {
+			return $http.delete('windows/'+ data.id);
+		},
+		activate : function(data) {
+			return $http.post('windows/'+ data.id +'/activate');
+		},
+		deactivate : function(data) {
+			return $http.post('windows/'+ data.id +'/deactivate');
 		}
-	}
+	} 
 }]);
 
+/*
 app.factory('UserService', ['$http', function($http) {
 	return {
 		get      : function (data) {
@@ -32,28 +48,6 @@ app.factory('UserService', ['$http', function($http) {
 	} 
 }]);*/
 
-app.factory('AccountService', ['$http', function($http) {
-	return {
-		get      : function (data) {
-			return $http.get('accounts/'+ data.id);
-		},
-		save     : function (data) {
-			return (data.id) ? $http.patch('accounts/'+ data.id, data) : $http.post('accounts', data);
-		},
-		read     : function(data) {
-			return $http.get('accounts?'+ jQuery.param(data), data);
-		},
-		delete   : function(data) {
-			return $http.delete('accounts/'+ data.id);
-		},
-		/*activate : function(data) {
-			return $http.post('accounts/'+ data.id +'/activate');
-		},
-		deactivate : function(data) {
-			return $http.post('accounts/'+ data.id +'/deactivate');
-		}*/
-	} 
-}]);
 
 /*app.factory('StateService', ['$http', function($http) {
 	return {

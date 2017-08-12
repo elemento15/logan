@@ -27,8 +27,8 @@
                             Catálogos <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!--<li><a href="#/courts">Juzgados</a></li>
-                            <li><a href="#/actions">Acc. Legales</a></li>
+                            <li><a href="#/windows">Ventanillas</a></li>
+                            <!--<li><a href="#/actions">Acc. Legales</a></li>
                             <li><a href="#/statuses">Estados</a></li>-->
                         </ul>
                     </li>
