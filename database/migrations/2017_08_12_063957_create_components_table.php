@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWindowsTable extends Migration
+class CreateComponentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateWindowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('windows', function (Blueprint $table) {
+        Schema::create('components', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->integer('window_id')->unsigned();
             $table->boolean('active')->default(1);
             $table->timestamps();
+
+            $table->foreign('window_id')->references('id')->on('windows')->onDelete('restrict');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateWindowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('windows');
+        Schema::dropIfExists('components');
     }
 }

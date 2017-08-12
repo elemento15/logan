@@ -22,7 +22,9 @@ app.controller('WindowsController', function ($scope, $http, $route, $location, 
 		name: ''
 	};
 
-	$scope.filters = {};
+	$scope.filters = {
+		active: '1'
+	};
 
 	BaseController.call(this, $scope, $route, $location, $ngConfirm, WindowService, toastr);
 });

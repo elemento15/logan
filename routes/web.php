@@ -18,3 +18,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('windows', 'WindowsController');
+Route::post('windows/{id}/activate', 'WindowsController@activate');
+Route::post('windows/{id}/deactivate', 'WindowsController@deactivate');
+
+Route::resource('components', 'ComponentsController');
+Route::post('components/{id}/activate', 'ComponentsController@activate');
+Route::post('components/{id}/deactivate', 'ComponentsController@deactivate');

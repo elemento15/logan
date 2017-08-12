@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Window extends Model
+class Component extends Model
 {
     protected $guarded = ['id'];
 
-    public function components()
+    public function window()
 	{
-		return $this->hasMany('App\Component');
+		return $this->belongsTo('App\Window');
 	}
 }

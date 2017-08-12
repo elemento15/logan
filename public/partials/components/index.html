@@ -1,9 +1,9 @@
 <div class="container-fluid">
-	<h3 class="cls-title">Ventanillas</h3>
+	<h3 class="cls-title">Componentes</h3>
 	
 	<div class="row cls-toolbar">
 		<div class="col-sm-2">
-			<a class="btn btn-primary" href="#/windows-new">Nueva</a>
+			<a class="btn btn-primary" href="#/components-new">Nuevo</a>
 		</div>
 
 		<!-- filters -->
@@ -31,6 +31,7 @@
 			<tr>
 				<th width="75">Acciones</th>
 				<th>Nombre</th>
+				<th>Ventanilla</th>
 				<th width="100" class="text-center">Estado</th>
 			</tr>
 		</thead>
@@ -38,7 +39,7 @@
 			<tr data-ng-repeat="(key, rec) in list">
 				<td>
 					<div class="cls-actions">
-						<a class="btn btn-info btn-xs" href="#/windows-edit/{{ rec.id }}">
+						<a class="btn btn-info btn-xs" href="#/components-edit/{{ rec.id }}">
 							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 						</a>
 						<button class="btn btn-danger btn-xs" ng-click="delete(rec.id)">
@@ -46,7 +47,8 @@
 						</button>
 					</div>
 				</td>
-				<td>{{ rec.name  }}</td>
+				<td>{{ rec.name }}</td>
+				<td>{{ rec.window.name }}</td>
 				<td align="center">
 					<div ng-hide="rec.status_loading">
 						<span class="label label-default cls-pointer" ng-if="rec.active" ng-click="setInactive(rec)">Activo</span>

@@ -28,8 +28,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#/windows">Ventanillas</a></li>
-                            <!--<li><a href="#/actions">Acc. Legales</a></li>
-                            <li><a href="#/statuses">Estados</a></li>-->
+                            <li><a href="#/components">Componentes</a></li>
+                            <!--<li><a href="#/statuses">Estados</a></li>-->
                         </ul>
                     </li>
                 </ul>

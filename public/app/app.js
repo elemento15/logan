@@ -17,6 +17,7 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 				controller: 'HomeController',
 				templateUrl: '/partials/home.html'
 			})
+		
 		.when('/windows',{
 				controller: 'WindowsController',
 				templateUrl: '/partials/windows/index.html'
@@ -28,6 +29,19 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 		.when('/windows-edit/:id',{
 				controller: 'WindowsController',
 				templateUrl: '/partials/windows/edit.html'
+			})
+
+		.when('/components',{
+				controller: 'ComponentsController',
+				templateUrl: '/partials/components/index.html'
+			})
+		.when('/components-new',{
+				controller: 'ComponentsController',
+				templateUrl: '/partials/components/edit.html'
+			})
+		.when('/components-edit/:id',{
+				controller: 'ComponentsController',
+				templateUrl: '/partials/components/edit.html'
 			})
 
 		.otherwise({ redirectTo: '/' });
