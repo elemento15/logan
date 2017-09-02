@@ -32,6 +32,7 @@
                             <li><a href="#/components">Componentes</a></li>
                             <li><a href="#/sectors">Sectores</a></li>
                             <li><a href="#/activities">Actividades</a></li>
+                            <li><a href="#/requirements">Requisitos</a></li>
                         </ul>
                     </li>
                 </ul>

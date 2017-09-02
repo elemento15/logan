@@ -90,6 +90,29 @@ app.factory('ActivityService', ['$http', function($http) {
 	} 
 }]);
 
+app.factory('RequirementService', ['$http', function($http) {
+	return {
+		get      : function (data) {
+			return $http.get('requirements/'+ data.id);
+		},
+		save     : function (data) {
+			return (data.id) ? $http.patch('requirements/'+ data.id, data) : $http.post('requirements', data);
+		},
+		read     : function(data) {
+			return $http.get('requirements?'+ jQuery.param(data), data);
+		},
+		delete   : function(data) {
+			return $http.delete('requirements/'+ data.id);
+		},
+		activate : function(data) {
+			return $http.post('requirements/'+ data.id +'/activate');
+		},
+		deactivate : function(data) {
+			return $http.post('requirements/'+ data.id +'/deactivate');
+		}
+	} 
+}]);
+
 app.factory('MemberService', ['$http', function($http) {
 	return {
 		get      : function (data) {

@@ -1,0 +1,15 @@
+<div class="container-fluid">
+	<h3 class="cls-title">{{title}}</h3>
+
+	<form class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label>Nombre:</label>
+				<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="100">
+			</div>
+		</div>
+	</form>
+
+	<!-- form toolbar -->
+	<div ng-include="tpls.form_toolbar"></div>
+</div>

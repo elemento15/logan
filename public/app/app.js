@@ -83,6 +83,19 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 				templateUrl: '/partials/members/edit.html'
 			})
 
+		.when('/requirements',{
+				controller: 'RequirementsController',
+				templateUrl: '/partials/requirements/index.html'
+			})
+		.when('/requirements-new',{
+				controller: 'RequirementsController',
+				templateUrl: '/partials/requirements/edit.html'
+			})
+		.when('/requirements-edit/:id',{
+				controller: 'RequirementsController',
+				templateUrl: '/partials/requirements/edit.html'
+			})
+
 		.otherwise({ redirectTo: '/' });
 
 	// regular expression definitions
