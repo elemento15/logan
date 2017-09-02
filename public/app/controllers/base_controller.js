@@ -120,6 +120,11 @@ function BaseController($scope, $route, $location, $ngConfirm, ModelService, toa
 		});
 	}
 
+	$scope.clearSearch = function () {
+		$scope.search = '';
+		$scope.paginate('first', true);
+	}
+
 	$scope.searchData = function () {
 		$scope.paginate('first', true);
 	}
