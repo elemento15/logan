@@ -23,6 +23,27 @@ function BaseController($scope, $route, $location, $ngConfirm, ModelService, toa
 	$scope.search = '';
 	$scope.pageInfo = '1/1';
 
+	// templates / partials
+	$scope.tpls = {
+		new_button    : 'partials/_tpls/new_button.html',
+		search        : 'partials/_tpls/index_search.html',
+		paginator     : 'partials/_tpls/index_paginator.html',
+		actions       : 'partials/_tpls/index_actions.html',
+		filter_status : 'partials/_tpls/index_filter_status.html',
+		change_status : 'partials/_tpls/index_change_status.html',
+		form_toolbar  : 'partials/_tpls/form_toolbar.html'
+	}
+
+	$scope.new = function () {
+		// go to module new
+		location.href = '/#'+ index +'-new/';
+	}
+
+	$scope.close = function () {
+		// return to module index
+		location.href = '/#' + index;
+	}
+
 	$scope.save = function () {
 		var data = me.validation()
 		
@@ -78,6 +99,11 @@ function BaseController($scope, $route, $location, $ngConfirm, ModelService, toa
 				}
 			}
 		});
+	}
+
+	$scope.view = function (id) {
+		// go to module edit
+		location.href = '/#'+ index +'-edit/'+ id;
 	}
 
 	$scope.edit = function (id) {
