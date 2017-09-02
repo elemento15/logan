@@ -34,3 +34,5 @@ Route::post('activities/{id}/activate', 'ActivitiesController@activate');
 Route::post('activities/{id}/deactivate', 'ActivitiesController@deactivate');
 
 Route::resource('members', 'MembersController');
+Route::post('members/{id}/activate', 'MembersController@activate');
+Route::post('members/{id}/deactivate', 'MembersController@deactivate');

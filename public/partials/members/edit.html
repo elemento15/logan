@@ -1,0 +1,61 @@
+<div class="container-fluid">
+	<h3 class="cls-title">{{title}}</h3>
+
+	<form class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label>Nombre:</label>
+				<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="100">
+			</div>
+
+			<div class="form-group">
+				<label>Curp:</label>
+				<input type="text" class="form-control" ng-model="data.curp" autocomplete="off" maxlength="18">
+			</div>
+
+			<div class="form-group">
+				<label>Teléfono:</label>
+				<input type="text" class="form-control" ng-model="data.phone" autocomplete="off" maxlength="10" placeholder="10 dígitos">
+			</div>
+
+			<div class="form-group">
+				<label>Celular:</label>
+				<input type="text" class="form-control" ng-model="data.mobile" autocomplete="off" maxlength="10" placeholder="10 dígitos">
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label>Email:</label>
+				<input type="text" class="form-control" ng-model="data.email" autocomplete="off" maxlength="254" placeholder="ejemplo@dominio.com">
+			</div>
+
+			<div class="form-group">
+				<label>Domicilio:</label>
+				<input type="text" class="form-control" ng-model="data.address" autocomplete="off" maxlength="254">
+			</div>
+
+			<div class="form-group">
+				<label>Género:</label>
+				<div class="radio-inline">
+					<input type="radio" name="gender" ng-model="data.gender" value="H"> Hombre
+				</div>
+				<div class="radio-inline">
+					<input type="radio" name="gender" ng-model="data.gender" value="M"> Mujer
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Comentarios:</label>
+				<textarea class="form-control" ng-model="data.comments" rows="5"></textarea>
+			</div>
+		</div>
+	</form>
+
+	<div class="row cls-toolbar-gray">
+		<div class="col-sm-12">
+			<button class="btn btn-primary" ng-click="save()">Guardar</button>
+			<a class="btn btn-warning" href="#/members">Cerrar</a>
+		</div>
+	</div>
+</div>

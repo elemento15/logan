@@ -1,9 +1,10 @@
 body {
-	/*background-color: #F5F5F5;*/
+	background-color: #F5F5F5;
 }
 
 .navbar {
 	margin-bottom: 5px;
+	background-color: #e4e4e4;
 }
 
 .cls-main-container {
@@ -72,6 +73,13 @@ table td .cls-small {
 	margin-top: 3px;
 }
 
+table td .cls-xsmall {
+	font-size: 11px;
+	line-height: 11px;
+	color: #666;
+	margin-top: 2px;
+}
+
 table td .cls-small-collapsed {
 	line-height: 16px;
 	height: 16px;
@@ -93,6 +101,10 @@ ul.pagination {
 
 .cls-small {
 	font-size: 12px;
+}
+
+.cls-xsmall {
+	font-size: 11px;
 }
 
 .cls-form-detail {
