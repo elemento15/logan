@@ -57,5 +57,6 @@
     <script src="/app/controllers/activities_controller.js"></script>
     <script src="/app/controllers/members_controller.js"></script>
     <script src="/app/controllers/requirements_controller.js"></script>
+    <script src="/app/controllers/projects_controller.js"></script>
 </body>
 </html>

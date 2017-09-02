@@ -40,3 +40,7 @@ Route::post('members/{id}/deactivate', 'MembersController@deactivate');
 Route::resource('requirements', 'RequirementsController');
 Route::post('requirements/{id}/activate', 'RequirementsController@activate');
 Route::post('requirements/{id}/deactivate', 'RequirementsController@deactivate');
+
+Route::resource('projects', 'ProjectsController');
+Route::post('projects/{id}/activate', 'ProjectsController@activate');
+Route::post('projects/{id}/deactivate', 'ProjectsController@deactivate');

@@ -135,3 +135,26 @@ app.factory('MemberService', ['$http', function($http) {
 		}
 	} 
 }]);
+
+app.factory('ProjectService', ['$http', function($http) {
+	return {
+		get      : function (data) {
+			return $http.get('projects/'+ data.id);
+		},
+		save     : function (data) {
+			return (data.id) ? $http.patch('projects/'+ data.id, data) : $http.post('projects', data);
+		},
+		read     : function(data) {
+			return $http.get('projects?'+ jQuery.param(data), data);
+		},
+		delete   : function(data) {
+			return $http.delete('projects/'+ data.id);
+		},
+		activate : function(data) {
+			return $http.post('projects/'+ data.id +'/activate');
+		},
+		deactivate : function(data) {
+			return $http.post('projects/'+ data.id +'/deactivate');
+		}
+	} 
+}]);

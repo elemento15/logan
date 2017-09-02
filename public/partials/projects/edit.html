@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<h3 class="cls-title">{{title}}</h3>
+
+	<form class="row">
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label>Descripción:</label>
+				<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="200">
+			</div>
+
+			<div class="form-group">
+				<label>Código:</label>
+				<input type="text" class="form-control" ng-model="data.code" autocomplete="off" maxlength="50">
+			</div>
+
+
+
+			<div class="form-group">
+				<label>Ubicación:</label>
+				<input type="text" class="form-control" ng-model="data.location" autocomplete="off" maxlength="254">
+			</div>
+
+			<div class="form-group">
+				<label>Cantidad:</label>
+				<input type="number" class="form-control" ng-model="data.amount" autocomplete="off">
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label>Comentarios:</label>
+				<textarea class="form-control" ng-model="data.comments" rows="5"></textarea>
+			</div>
+		</div>
+	</form>
+
+	<!-- form toolbar -->
+	<div ng-include="tpls.form_toolbar"></div>
+</div>

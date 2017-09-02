@@ -96,6 +96,19 @@ app.config(function ($routeProvider, $provide, toastrConfig) {
 				templateUrl: '/partials/requirements/edit.html'
 			})
 
+		.when('/projects',{
+				controller: 'ProjectsController',
+				templateUrl: '/partials/projects/index.html'
+			})
+		.when('/projects-new',{
+				controller: 'ProjectsController',
+				templateUrl: '/partials/projects/edit.html'
+			})
+		.when('/projects-edit/:id',{
+				controller: 'ProjectsController',
+				templateUrl: '/partials/projects/edit.html'
+			})
+
 		.otherwise({ redirectTo: '/' });
 
 	// regular expression definitions
