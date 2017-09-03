@@ -17,9 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('code', 50)->unique();
-            $table->integer('window_id')->unsigned();
             $table->integer('component_id')->unsigned();
-            $table->integer('sector_id')->unsigned();
             $table->integer('activity_id')->unsigned();
             $table->date('project_date');
             $table->string('location')->nullable();
@@ -28,11 +26,10 @@ class CreateProjectsTable extends Migration
             $table->boolean('has_act')->default(0);
             $table->boolean('has_evaluation')->default(0);
             $table->double('amount');
+            $table->enum('status', ['P','A','R'])->default('P');
             $table->timestamps();
 
-            $table->foreign('window_id')->references('id')->on('windows')->onDelete('restrict');
             $table->foreign('component_id')->references('id')->on('components')->onDelete('restrict');
-            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('restrict');
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('restrict');
         });
     }

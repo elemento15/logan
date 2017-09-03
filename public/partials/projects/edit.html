@@ -26,10 +26,66 @@
 			</div>
 		</div>
 
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<div class="form-group">
-				<label>Comentarios:</label>
-				<textarea class="form-control" ng-model="data.comments" rows="5"></textarea>
+				<label>Ventanilla:</label>
+				<select class="form-control" ng-model="data.window_id" ng-change="getComponents()">
+					<option value="">-- Seleccione --</option>
+					<option ng-repeat="opt in windowsList" value="{{opt.id}}" ng-selected="data.window_id == opt.id">{{ opt.name }}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Componente:</label>
+				<select class="form-control" ng-model="data.component_id">
+					<option value="">-- Seleccione --</option>
+					<option ng-repeat="opt in componentsList" value="{{opt.id}}" ng-selected="data.component_id == opt.id">{{ opt.name }}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Sector:</label>
+				<select class="form-control" ng-model="data.sector_id" ng-change="getActivities()">
+					<option value="">-- Seleccione --</option>
+					<option ng-repeat="opt in sectorsList" value="{{opt.id}}" ng-selected="data.sector_id == opt.id">{{ opt.name }}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Actividad:</label>
+				<select class="form-control" ng-model="data.activity_id">
+					<option value="">-- Seleccione --</option>
+					<option ng-repeat="opt in activitiesList" value="{{opt.id}}" ng-selected="data.activity_id == opt.id">{{ opt.name }}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-sm-5">
+			<ul class="nav nav-tabs cls-nav-tabs" role="tablist">
+				<li role="presentation" ng-class="{active: (tab == 'C')}" ng-click="tab = 'C'">
+					<a href="" aria-controls="comments" role="tab" data-toggle="tab">Comentarios</a>
+				</li>
+				<li role="presentation" ng-class="{active: (tab == 'R')}" ng-click="tab = 'R'">
+					<a href="" aria-controls="requirements" role="tab" data-toggle="tab">Requisitos</a>
+				</li>
+				<li role="presentation" ng-class="{active: (tab == 'M')}" ng-click="tab = 'M'">
+					<a href="" aria-controls="members" role="tab" data-toggle="tab">Integrantes</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content cls-tab-contents">
+				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'C'}">
+					<div class="form-group">
+						<textarea class="form-control" ng-model="data.comments" rows="10"></textarea>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'R'}">
+					Requisitos
+				</div>
+				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'M'}">
+					Integrantes
+				</div>
 			</div>
 		</div>
 	</form>

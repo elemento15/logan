@@ -6,7 +6,22 @@
 		<div class="col-sm-2" ng-include="tpls.new_button"></div>
 
 		<!-- status filter -->
-		<div class="col-sm-6" ng-include="tpls.filter_status"></div>
+		<div class="col-sm-3" ng-include="tpls.filter_status"></div>
+
+		<!-- state filter -->
+		<div class="col-sm-3">
+			<div class="form-inline">
+				<div class="form-group">
+					<label class="cls-small">Status:</label>
+					<select class="form-control" ng-model="filters.status" ng-change="changeFilter()">
+						<option value="">(Todos)</option>
+						<option value="P">Pendientes</option>
+						<option value="A">Aceptados</option>
+						<option value="R">Rechazados</option>
+					</select>
+				</div>
+			</div>
+		</div>
 
 		<!-- search input -->
 		<div class="col-sm-4" ng-include="tpls.search"></div>
@@ -20,7 +35,8 @@
 				<th>Fecha</th>
 				<th>Ventanilla/Componente</th>
 				<th>Sector/Actividad</th>
-				<th width="100" class="text-center">Estado</th>
+				<th width="80" class="text-center">Status</th>
+				<th width="80" class="text-center">Estado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,12 +49,17 @@
 				</td>
 				<td>{{ rec.project_date }}</td>
 				<td>
-					<div>{{ rec.window.name }}</div>
+					<div>{{ rec.component.window.name }}</div>
 					<div class="cls-small">{{ rec.component.name }}</div>
 				</td>
 				<td>
-					<div>{{ rec.sector.name }}</div>
+					<div>{{ rec.activity.sector.name }}</div>
 					<div class="cls-small">{{ rec.activity.name }}</div>
+				</td>
+				<td align="center">
+					<span class="label label-primary" ng-show="rec.status == 'P'">Pendiente</span>
+					<span class="label label-success" ng-show="rec.status == 'A'">Autorizado</span>
+					<span class="label label-danger"  ng-show="rec.status == 'R'">Rechazado</span>
 				</td>
 				<!-- change status component -->
 				<td align="center" ng-include="tpls.change_status"></td>

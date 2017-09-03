@@ -142,3 +142,17 @@ ul.pagination li span:hover {
 .cls-filters .row {
 	margin-bottom: 5px;
 }
+
+.cls-nav-tabs {
+
+}
+
+.cls-nav-tabs li a {
+	padding: 5px 10px;
+}
+
+.cls-tab-contents {
+	padding: 10px;
+	border: 1px solid #ddd; 
+	border-top: 0px;
+}
