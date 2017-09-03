@@ -40,19 +40,24 @@ h5.cls-title {
 	font-size: 16px;
 }
 
-table.cls-table {
+table.cls-table,
+table.cls-table-sm {
 	margin-bottom: 5px;
 }
 
-table.cls-table, form {
+table.cls-table, 
+table.cls-table-sm, 
+form {
 	font-size: 13px;
 }
 
-table.cls-table thead tr {
+table.cls-table thead tr,
+table.cls-table-sm thead tr {
 	background-color: #d0d3f1;
 }
 
-table.cls-table tbody {
+table.cls-table tbody,
+table.cls-table-sm tbody {
 	background-color: #fff;
 }
 
@@ -61,15 +66,22 @@ table.cls-table tbody td {
 	height: 33px;
 }
 
-table.cls-table tbody tr:hover {
+table.cls-table-sm tbody td {
+	line-height: 14px;
+}
+
+table.cls-table tbody tr:hover,
+table.cls-table-sm tbody tr:hover {
 	background-color: #e6e6e6;
 }
 
-table.cls-table tr td .cls-actions {
+table.cls-table tr td .cls-actions,
+table.cls-table-sm tr td .cls-actions {
 	display: none;
 }
 
-table.cls-table tr:hover td .cls-actions {
+table.cls-table tr:hover td .cls-actions,
+table.cls-table-sm tr:hover td .cls-actions {
 	padding: 0px;
 	display: block;
 }
@@ -155,4 +167,9 @@ ul.pagination li span:hover {
 	padding: 10px;
 	border: 1px solid #ddd; 
 	border-top: 0px;
+}
+
+.cls-form-text {
+	color: #3841a7;
+	font-size: 14px;
 }

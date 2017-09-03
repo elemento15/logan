@@ -45,7 +45,7 @@ function BaseController($scope, $route, $location, $ngConfirm, ModelService, toa
 	}
 
 	$scope.save = function () {
-		var data = me.validation()
+		var data = me.validation();
 		
 		if (data) {
 			ModelService.save(data)

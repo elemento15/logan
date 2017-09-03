@@ -17,4 +17,9 @@ class Project extends Model
 	{
 		return $this->belongsTo('App\Activity');
 	}
+
+	public function requirements()
+	{
+		return $this->belongsToMany('App\Requirement');
+	}
 }

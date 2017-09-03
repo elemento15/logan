@@ -24,7 +24,13 @@
 		</div>
 
 		<!-- search input -->
-		<div class="col-sm-4" ng-include="tpls.search"></div>
+		<div class="col-sm-3" ng-include="tpls.search"></div>
+
+		<div class="col-sm-1">
+			<button class="btn btn-default">
+				<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+			</button>
+		</div>
 	</div>
 
 	<table class="table table-condensed table-bordered cls-table">
@@ -33,6 +39,7 @@
 				<th width="75">Acciones</th>
 				<th>Código/Descripción</th>
 				<th>Fecha</th>
+				<th>Cantidad</th>
 				<th>Ventanilla/Componente</th>
 				<th>Sector/Actividad</th>
 				<th width="80" class="text-center">Status</th>
@@ -48,6 +55,7 @@
 					<div class="cls-xsmall">{{ rec.name }}</div>
 				</td>
 				<td>{{ rec.project_date }}</td>
+				<td align="right">${{ rec.amount | number }}</td>
 				<td>
 					<div>{{ rec.component.window.name }}</div>
 					<div class="cls-small">{{ rec.component.name }}</div>

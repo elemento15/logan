@@ -1,5 +1,5 @@
 app.controller('ProjectsController', function ($scope, $http, $route, $location, $ngConfirm, toastr, ProjectService, 
-	                                           WindowService, ComponentService, SectorService, ActivityService) {
+	                                           WindowService, ComponentService, SectorService, ActivityService, RequirementService) {
 	this.index = '/projects';
 	this.title = {
 		new:  'Nuevo Proyecto',
@@ -31,7 +31,8 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 		has_act: 0,
 		has_evaluation: 0,
 		amount: 0,
-		comments: ''
+		comments: '',
+		requirements: []
 	};
 
 	$scope.filters = {
@@ -39,11 +40,14 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 		status: 'P'
 	};
 
+	$scope.selRequirement = '';
+
 	$scope.tab = 'C';
 	$scope.windowsList = [];
 	$scope.componentsList = [];
 	$scope.sectorsList = [];
 	$scope.activitiesList = [];
+	$scope.requirementsList = [];
 
 	$scope.getWindows = function () {
         var filters = [{ 
@@ -115,9 +119,55 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 			});
 	}
 
+	$scope.getRequirements = function () {
+		var filters = [{ 
+            field: 'active', 
+            value: 1
+        }];
+
+		RequirementService.read({ filters: filters })
+			.success(function (response) {
+				$scope.requirementsList = response;
+			}).error(function (response) {
+				toastr.error(response.msg || 'Error en el servidor');
+			});
+	}
+
+	$scope.addRequirement = function () {
+		var selected = $scope.selRequirement;
+		var reqs = $scope.requirementsList;
+		var added = $scope.data.requirements;
+		var exists = false;
+
+		// can't add twice the same requirement
+		added.forEach(function (item) {
+			if (item.id == selected) {
+				exists = true;
+			}
+		});
+
+		if (! exists) {
+			reqs.forEach(function (item) {
+				if (item.id == selected) {
+					$scope.data.requirements.push({
+						id: item.id,
+						name: item.name
+					});
+				}
+			});
+		} else {
+			toastr.warning('El requisito ya se agregó', 'Validaciones');
+		}
+	}
+
+	$scope.removeRequirement = function (index) {
+		$scope.data.requirements.splice(index, 1);
+	}
+
 	$scope.$on('$viewContentLoaded', function (view) {
 		$scope.getWindows();
 		$scope.getSectors();
+		$scope.getRequirements();
 	});
 
 	BaseController.call(this, $scope, $route, $location, $ngConfirm, ProjectService, toastr);

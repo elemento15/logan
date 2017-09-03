@@ -16,7 +16,7 @@ class ProjectsController extends BaseController
     protected $orderBy = ['field' => 'project_date', 'type' => 'ASC'];
     
     // params needer for show
-    protected $showJoins = [];
+    protected $showJoins = ['component.window', 'activity.sector', 'requirements'];
 
     // params needed for store/update
     protected $saveFields = ['name','code','location','has_act','has_evaluation','amount','comments',
@@ -58,7 +58,14 @@ class ProjectsController extends BaseController
             $data['project_date'] = date('Y-m-d');
 
             try {
-                return $mainModel::create($data);
+                $project = $mainModel::create($data);
+
+                // add requirements
+                foreach ($request->requirements as $requirement) {
+                    $project->requirements()->attach($requirement['id']);
+                }
+
+                return $project;
             } catch (Exception $e) {
                 return Response::json(array('msg' => 'Error al guardar'), 500);
             }
