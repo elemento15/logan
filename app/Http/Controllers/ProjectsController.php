@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,7 +12,7 @@ class ProjectsController extends BaseController
 
     // params needen for index
     protected $searchFields = ['name','code'];
-    protected $indexPaginate = 10;
+    protected $indexPaginate = 8;
     protected $indexJoins = ['component.window', 'activity.sector'];
     protected $orderBy = ['field' => 'project_date', 'type' => 'ASC'];
     
