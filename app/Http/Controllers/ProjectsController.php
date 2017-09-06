@@ -17,7 +17,7 @@ class ProjectsController extends BaseController
     protected $orderBy = ['field' => 'project_date', 'type' => 'ASC'];
     
     // params needer for show
-    protected $showJoins = ['component.window', 'activity.sector', 'requirements'];
+    protected $showJoins = ['component.window', 'activity.sector', 'requirements', 'members'];
 
     // params needed for store/update
     protected $saveFields = ['name','code','location','has_act','has_evaluation','amount','comments',
@@ -64,6 +64,12 @@ class ProjectsController extends BaseController
                 // add requirements
                 foreach ($request->requirements as $requirement) {
                     $project->requirements()->attach($requirement['id']);
+                }
+
+                // add members
+                foreach ($request->members as $member) {
+                    $representative = $member['pivot']['representative'];
+                    $project->members()->attach($member['id'], array('representative' => $representative));
                 }
 
                 return $project;

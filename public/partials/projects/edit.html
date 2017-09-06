@@ -88,6 +88,7 @@
 				<!-- requirements -->
 				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'R'}">
 					<p>Agregue los requisitos a solicitar a cada integrante</p>
+					
 					<div class="row">
 						<div class="col-sm-10">
 							<div class="form-group">
@@ -98,11 +99,12 @@
 							</div>
 						</div>
 						<div class="col-sm-2">
-						<button class="btn btn-default btn-sm" ng-click="addRequirement()">
+							<button class="btn btn-default btn-sm" ng-click="addRequirement()">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 							</button>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div class="col-sm-12">
 							<table class="table table-condensed table-bordered cls-table-sm">
@@ -127,6 +129,55 @@
 				<!-- members -->
 				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'M'}">
 					<p>Agregue los integrantes del proyecto</p>
+					
+					<div class="row">
+						<div class="col-sm-7">
+							<div class="form-group">
+								<input type="text" class="form-control input-sm" ng-model="member.name" 
+								       ng-keypress="searchMemberName($event)">
+							</div>
+						</div>
+						<div class="col-sm-5">
+							<button class="btn btn-default btn-sm" id="btnAddMember" ng-click="addMember()">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
+							<button class="btn btn-default btn-sm" ng-click="openMemberSearch('')">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
+							<button class="btn btn-default btn-sm" ng-click="clearMember('')">
+								<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+							</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<table class="table table-condensed table-bordered cls-table-sm">
+								<thead>
+									<th>&nbsp;</th>
+									<th>Integrantes</th>
+									<th title="Representante">Repres.</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="(key, rec) in data.members">
+										<td align="center">
+											<div class="cls-pointer" ng-click="removeMember(key)">
+												<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+											</div>
+										</td>
+										<td>
+											<div>{{ rec.name }}</div>
+											<div class="cls-small">{{ rec.curp }}</div>
+										</td>
+										<td class="text-center">
+											<span ng-show="rec.pivot.representative" class="label label-success">SI</span>
+											<span ng-hide="rec.pivot.representative" class="label label-default cls-pointer" ng-click="setRepresentative(key)">NO</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

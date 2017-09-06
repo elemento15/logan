@@ -22,4 +22,9 @@ class Project extends Model
 	{
 		return $this->belongsToMany('App\Requirement');
 	}
+
+	public function members()
+	{
+		return $this->belongsToMany('App\Member')->withPivot('representative');
+	}
 }

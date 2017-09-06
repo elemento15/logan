@@ -132,6 +132,9 @@ app.factory('MemberService', ['$http', function($http) {
 		},
 		deactivate : function(data) {
 			return $http.post('members/'+ data.id +'/deactivate');
+		},
+		search_name : function (name) {
+			return $http.post('members/search_name', name);
 		}
 	} 
 }]);

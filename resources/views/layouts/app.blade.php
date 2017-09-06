@@ -47,6 +47,7 @@
     <script src="/app/ajax.js"></script>
 
     <!-- components -->
+    <script src="/app/components/modal_members_search.js"></script>
     
     <!-- controllers -->
     <script src="/app/controllers/home_controller.js"></script>
