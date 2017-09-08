@@ -102,11 +102,11 @@ class BaseController extends Controller {
             $request[$item] = ($request[$item] == '') ? null : $request[$item];
         }
 
-        $rules = $this->formRules;
+        $rules = $this->parseFormRules(0);
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return Response::json(array('msg' => 'Revise las validaciones'), 501);
+            return Response::json(array('errors' => $validator->errors()->all()), 422);
         } else {
             $data = $this->getSavingFields($request->all(), 'store');
 
@@ -176,11 +176,11 @@ class BaseController extends Controller {
             $request[$item] = ($request[$item] == '') ? null : $request[$item];
         }
 
-        $rules = $this->formRules;
+        $rules = $this->parseFormRules($id);
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return Response::json(array('msg' => 'Revise las validaciones'), 501);
+            return Response::json(array('errors' => $validator->errors()->all()), 422);
         } else {
             $record = $mainModel::find($id);
 
@@ -292,6 +292,17 @@ class BaseController extends Controller {
         }
 
         return $data;
+    }
+
+    protected function parseFormRules($id)
+    {
+        $rules = [];
+        
+        foreach ($this->formRules as $key => $rule) {
+            $rules[$key] = str_replace('{{id}}', $id, $rule);
+        }
+
+        return $rules;
     }
 
 }

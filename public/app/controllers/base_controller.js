@@ -54,7 +54,13 @@ function BaseController($scope, $route, $location, $ngConfirm, ModelService, toa
 					$location.path(index);
 				})
 				.error(function(response) {
-					toastr.error(response.msg || 'Error en el servidor');
+					if (response.errors) {
+						response.errors.forEach(function (item) {
+							toastr.error(item);
+						});
+					} else {
+						toastr.error(response.msg || 'Error en el servidor');
+					}
 				});
 		}
 	}

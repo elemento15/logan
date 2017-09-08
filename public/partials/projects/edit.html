@@ -69,11 +69,14 @@
 				<li role="presentation" ng-class="{active: (tab == 'C')}" ng-click="tab = 'C'">
 					<a href="" aria-controls="comments" role="tab" data-toggle="tab">Comentarios</a>
 				</li>
-				<li role="presentation" ng-class="{active: (tab == 'R')}" ng-click="tab = 'R'">
+				<li role="presentation" ng-class="{active: (tab == 'R')}" ng-click="tab = 'R'" ng-hide="data.id">
 					<a href="" aria-controls="requirements" role="tab" data-toggle="tab">Requisitos</a>
 				</li>
-				<li role="presentation" ng-class="{active: (tab == 'M')}" ng-click="tab = 'M'">
+				<li role="presentation" ng-class="{active: (tab == 'M')}" ng-click="tab = 'M'" ng-hide="data.id">
 					<a href="" aria-controls="members" role="tab" data-toggle="tab">Integrantes</a>
+				</li>
+				<li role="presentation" ng-class="{active: (tab == 'X')}" ng-click="tab = 'X'" ng-show="data.id">
+					<a href="" aria-controls="documents" role="tab" data-toggle="tab">Requisitos por Integrante</a>
 				</li>
 			</ul>
 
@@ -177,6 +180,46 @@
 								</tbody>
 							</table>
 						</div>
+					</div>
+				</div>
+				<!-- documents -->
+				<div role="tabpanel" class="tab-pane" ng-class="{active: tab == 'X'}">
+					<table class="table table-condensed table-bordered cls-table-sm">
+						<thead>
+							<th width="40" class="text-center">Rep.</th>
+							<th>Integrante</th>
+							<th width="60" class="text-center">Pend.</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="(key, item) in data.members" ng-class="{'cls-selected' : (item.id == selectionMember.id)}">
+								<td class="text-center">
+									<span class="label label-primary" ng-show="item.pivot.representative" title="Es representante">SI</span>
+								</td>
+								<td class="cls-pointer" ng-click="selectMember(item)">{{ item.name }}</td>
+								<td class="text-center">
+									<span ng-show="getUnreceived(item)" class="badge" title="Docs. por recibir">{{ getUnreceived(item) }}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<br>
+
+					<div ng-show="selectionMember.id">
+						<label>Requisitos de: {{ selectionMember.name }}</label>
+						<table class="table table-condensed table-bordered cls-list-requirements">
+							<tbody>
+								<tr ng-repeat="(key, item) in data.requirements">
+									<td>{{ item.name }}</td>
+									<td width="70" class="text-center">
+										<span class="label label-default cls-pointer" 
+										      ng-hide="isReceived(item)" ng-click="changeReceived(item, 1)">Recibir</span>
+										<span class="label label-success cls-pointer" 
+										      ng-show="isReceived(item)" ng-click="changeReceived(item, 0)">Recibido</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

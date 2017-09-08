@@ -173,3 +173,11 @@ ul.pagination li span:hover {
 	color: #3841a7;
 	font-size: 14px;
 }
+
+.cls-selected {
+	background-color: #fff7c0;
+}
+
+.cls-list-requirements {
+	background-color: #fff;
+}

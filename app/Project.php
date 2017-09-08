@@ -27,4 +27,9 @@ class Project extends Model
 	{
 		return $this->belongsToMany('App\Member')->withPivot('representative');
 	}
+
+	public function docs_received()
+	{
+		return $this->hasMany('App\ProjectRequirementReceived');
+	}
 }

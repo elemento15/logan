@@ -10,9 +10,53 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 	this.validation = function () {
 		var data = $scope.data;
 		var invalid = false;
+		var representative = false;
+
+		if (! data.name) {
+			invalid = toastr.error('Nombre requerido', 'Validaciones');
+		}
 
 		if (data.name && data.name.length < 10){
-			invalid = toastr.warning('Nombre demasiado corto', 'Validaciones');
+			invalid = toastr.error('Nombre demasiado corto', 'Validaciones');
+		}
+
+		if (! data.code) {
+			invalid = toastr.error('Código requerido', 'Validaciones');
+		}
+
+		if (data.code && data.code.length < 5){
+			invalid = toastr.error('Código demasiado corto', 'Validaciones');
+		}
+
+		if (! data.amount || data.amount == 0) {
+			invalid = toastr.error('Cantidad requerida', 'Validaciones');
+		}
+
+		if (! data.activity_id) {
+			invalid = toastr.error('Actividad requerida', 'Validaciones');
+		}
+
+		if (! data.component_id) {
+			invalid = toastr.error('Componente requerido', 'Validaciones');
+		}
+
+		if (! data.requirements || data.requirements.length < 1) {
+			invalid = toastr.error('Agregue por lo menos 1 requisito', 'Validaciones');
+		}
+
+		if (! data.members || data.members.length < 1) {
+			invalid = toastr.error('Agregue por lo menos 1 integrante', 'Validaciones');
+		} else {
+			// one member must be representative
+			data.members.forEach(function (item) {
+				if (item.pivot && item.pivot.representative) {
+					representative = true;
+				}
+			});
+
+			if (! representative) {
+				invalid = toastr.error('Asigne un integrante como representante', 'Validaciones');
+			}
 		}
 
 		return (invalid) ? false : data;
@@ -49,6 +93,10 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 		email: '',
 		phone: '',
 		mobile: ''
+	};
+
+	$scope.selectionMember = {
+		id: 0
 	};
 
 	$scope.selRequirement = '';
@@ -302,6 +350,43 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 			}
 		});
 	}
+
+	$scope.selectMember = function (rec) {
+		// 
+		$scope.selectionMember = rec;
+	}
+
+	$scope.isReceived = function (requirement) {
+		var docs = $scope.data.docs_received || [];
+		var member = $scope.selectionMember;
+		var received = false;
+
+		docs.forEach(function (item) {
+			if (member.id == item.member_id && requirement.id == item.requirement_id) {
+				received = item.received;
+			}
+		});
+
+		return received;
+	}
+
+	$scope.getUnreceived = function (member) {
+		var unreceived = 0;
+		var docs = $scope.data.docs_received || [];
+
+		docs.forEach(function (item) {
+			if (member.id == item.member_id && item.received == 0) {
+				unreceived++;
+			}
+		});
+
+		return unreceived;
+	}
+
+	$scope.changeReceived = function (requirement, value) {
+		console.log('CHANGE RECEIVED')
+	}
+
 
 	$scope.$on('$viewContentLoaded', function (view) {
 		$scope.getWindows();
