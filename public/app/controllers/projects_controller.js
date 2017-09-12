@@ -83,7 +83,7 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 
 	$scope.filters = {
 		active: '1',
-		status: 'P'
+		status: ''
 	};
 
 	$scope.member = {
@@ -383,8 +383,62 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 		return unreceived;
 	}
 
+	$scope.getDocReceiveId = function (member_id, requirement_id) {
+		var id = 0;
+
+		$scope.data.docs_received.forEach(function (item) {
+			if (item.member_id == member_id && item.requirement_id == requirement_id) {
+				id = item.id;
+			}
+		});
+
+		return id;
+	}
+
+	$scope.setDocReceivedStatus = function (record) {
+		var id = record.id;
+
+		$scope.data.docs_received.forEach(function (item) {
+			if (item.id == id){
+				item.received = record.received;
+			}
+		});
+	}
+
 	$scope.changeReceived = function (requirement, value) {
-		console.log('CHANGE RECEIVED')
+		var member = $scope.selectionMember;
+		var doc_received_id = $scope.getDocReceiveId(member.id, requirement.id);
+
+		var data = {
+			id: $scope.data.id,
+			doc_received_id: doc_received_id,
+			value: value
+		};
+
+		requirement.loading = true;
+
+		ProjectService.doc_received(data)
+			.success(function (response) {
+				requirement.loading = false;
+				$scope.setDocReceivedStatus(response);
+			}).error(function (response) {
+				toastr.error(response.msg || 'Error en el servidor');
+			});
+	}
+
+	$scope.allowSave = function () {
+		var data = $scope.data;
+		var val = false;
+
+		if (! data.id) {
+			val = true;
+		} else {
+			if (data.active && data.status == 'P') {
+				val = true;
+			}
+		}
+
+		return val;
 	}
 
 

@@ -158,6 +158,9 @@ app.factory('ProjectService', ['$http', function($http) {
 		},
 		deactivate : function(data) {
 			return $http.post('projects/'+ data.id +'/deactivate');
+		},
+		doc_received : function (data) {
+			return $http.post('projects/'+ data.id +'/doc_received', data);
 		}
 	} 
 }]);

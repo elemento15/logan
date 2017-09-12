@@ -45,3 +45,4 @@ Route::post('requirements/{id}/deactivate', 'RequirementsController@deactivate')
 Route::resource('projects', 'ProjectsController');
 Route::post('projects/{id}/activate', 'ProjectsController@activate');
 Route::post('projects/{id}/deactivate', 'ProjectsController@deactivate');
+Route::post('projects/{id}/doc_received', 'ProjectsController@doc_received');

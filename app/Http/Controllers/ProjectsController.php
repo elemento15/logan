@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ProjectRequirementReceived;
+
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +17,7 @@ class ProjectsController extends BaseController
     protected $searchFields = ['name','code'];
     protected $indexPaginate = 8;
     protected $indexJoins = ['component.window', 'activity.sector'];
-    protected $orderBy = ['field' => 'project_date', 'type' => 'ASC'];
+    protected $orderBy = ['field' => 'project_date', 'type' => 'DESC'];
     
     // params needer for show
     protected $showJoins = ['component.window', 'activity.sector', 'requirements', 'members', 'docs_received.member',
@@ -79,7 +81,7 @@ class ProjectsController extends BaseController
 
                 // add members
                 foreach ($request->members as $member) {
-                    $representative = $member['pivot']['representative'];
+                    $representative = (isset($member['pivot']['representative'])) ? $member['pivot']['representative'] : 0;
                     $project->members()->attach($member['id'], array('representative' => $representative));
                 }
 
@@ -148,6 +150,22 @@ class ProjectsController extends BaseController
             }
         
             return $record;
+        }
+    }
+
+    public function doc_received($id, Request $request)
+    {
+        $record = ProjectRequirementReceived::find($request->doc_received_id);
+
+        if (!$record || $record->project_id != $id) {
+            return Response::json(array('msg' => 'Error al leer documento recibido'), 500);
+        }
+
+        $record->received = $request->value;
+        if ($record->save()) {
+            return $record;
+        } else {
+            return Response::json(array('msg' => 'No se pudo actualizar el documento'), 500);
         }
     }
     

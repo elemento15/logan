@@ -1,66 +1,95 @@
 <div class="container-fluid">
 	<h3 class="cls-title">{{title}}</h3>
 
+	<div class="cls-project-inactive" ng-show="data.id && ! data.active">Inactivo</div>
+
 	<form class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label>Descripción:</label>
-				<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="200">
+		<div class="col-sm-7">
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="form-group">
+						<label>Descripción:</label>
+						<input type="text" class="form-control" ng-model="data.name" autocomplete="off" maxlength="200">
+					</div>
+
+					<div class="form-group">
+						<label>Código:</label>
+						<input type="text" class="form-control" ng-model="data.code" autocomplete="off" maxlength="50">
+					</div>
+
+
+
+					<div class="form-group">
+						<label>Ubicación:</label>
+						<input type="text" class="form-control" ng-model="data.location" autocomplete="off" maxlength="254">
+					</div>
+
+					<div class="form-group">
+						<label>Cantidad:</label>
+						<input type="number" class="form-control" ng-model="data.amount" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="col-sm-5">
+					<div ng-show="data.id">
+						<h4 ng-show="data.status == 'P'">Status: <span class="label label-primary">Pediente</span></h4>
+						<h4 ng-show="data.status == 'A'">Status: <span class="label label-success">Autorizado</span></h4>
+						<h4 ng-show="data.status == 'R'">Status: <span class="label label-danger">Rechazado</span></h4>
+					</div>
+
+					<div class="form-group">
+						<label>Ventanilla:</label>
+						<select class="form-control" ng-model="data.window_id" ng-change="getComponents()" ng-hide="data.id">
+							<option value="">-- Seleccione --</option>
+							<option ng-repeat="opt in windowsList" value="{{opt.id}}" ng-selected="data.window_id == opt.id">{{ opt.name }}</option>
+						</select>
+						<div class="cls-form-text" ng-show="data.id">{{ data.component.window.name }}</div>
+					</div>
+
+					<div class="form-group">
+						<label>Componente:</label>
+						<select class="form-control" ng-model="data.component_id" ng-hide="data.id">
+							<option value="">-- Seleccione --</option>
+							<option ng-repeat="opt in componentsList" value="{{opt.id}}" ng-selected="data.component_id == opt.id">{{ opt.name }}</option>
+						</select>
+						<div class="cls-form-text" ng-show="data.id">{{ data.component.name }}</div>
+					</div>
+
+					<div class="form-group">
+						<label>Sector:</label>
+						<select class="form-control" ng-model="data.sector_id" ng-change="getActivities()" ng-hide="data.id">
+							<option value="">-- Seleccione --</option>
+							<option ng-repeat="opt in sectorsList" value="{{opt.id}}" ng-selected="data.sector_id == opt.id">{{ opt.name }}</option>
+						</select>
+						<div class="cls-form-text" ng-show="data.id">{{ data.activity.sector.name }}</div>
+					</div>
+
+					<div class="form-group">
+						<label>Actividad:</label>
+						<select class="form-control" ng-model="data.activity_id" ng-hide="data.id">
+							<option value="">-- Seleccione --</option>
+							<option ng-repeat="opt in activitiesList" value="{{opt.id}}" ng-selected="data.activity_id == opt.id">{{ opt.name }}</option>
+						</select>
+						<div class="cls-form-text" ng-show="data.id">{{ data.activity.name }}</div>
+					</div>
+				</div>	
 			</div>
 
-			<div class="form-group">
-				<label>Código:</label>
-				<input type="text" class="form-control" ng-model="data.code" autocomplete="off" maxlength="50">
-			</div>
+			<br>
 
-
-
-			<div class="form-group">
-				<label>Ubicación:</label>
-				<input type="text" class="form-control" ng-model="data.location" autocomplete="off" maxlength="254">
-			</div>
-
-			<div class="form-group">
-				<label>Cantidad:</label>
-				<input type="number" class="form-control" ng-model="data.amount" autocomplete="off">
-			</div>
-		</div>
-
-		<div class="col-sm-3">
-			<div class="form-group">
-				<label>Ventanilla:</label>
-				<select class="form-control" ng-model="data.window_id" ng-change="getComponents()" ng-hide="data.id">
-					<option value="">-- Seleccione --</option>
-					<option ng-repeat="opt in windowsList" value="{{opt.id}}" ng-selected="data.window_id == opt.id">{{ opt.name }}</option>
-				</select>
-				<div class="cls-form-text" ng-show="data.id">{{ data.component.window.name }}</div>
-			</div>
-
-			<div class="form-group">
-				<label>Componente:</label>
-				<select class="form-control" ng-model="data.component_id" ng-hide="data.id">
-					<option value="">-- Seleccione --</option>
-					<option ng-repeat="opt in componentsList" value="{{opt.id}}" ng-selected="data.component_id == opt.id">{{ opt.name }}</option>
-				</select>
-				<div class="cls-form-text" ng-show="data.id">{{ data.component.name }}</div>
-			</div>
-
-			<div class="form-group">
-				<label>Sector:</label>
-				<select class="form-control" ng-model="data.sector_id" ng-change="getActivities()" ng-hide="data.id">
-					<option value="">-- Seleccione --</option>
-					<option ng-repeat="opt in sectorsList" value="{{opt.id}}" ng-selected="data.sector_id == opt.id">{{ opt.name }}</option>
-				</select>
-				<div class="cls-form-text" ng-show="data.id">{{ data.activity.sector.name }}</div>
-			</div>
-
-			<div class="form-group">
-				<label>Actividad:</label>
-				<select class="form-control" ng-model="data.activity_id" ng-hide="data.id">
-					<option value="">-- Seleccione --</option>
-					<option ng-repeat="opt in activitiesList" value="{{opt.id}}" ng-selected="data.activity_id == opt.id">{{ opt.name }}</option>
-				</select>
-				<div class="cls-form-text" ng-show="data.id">{{ data.activity.name }}</div>
+			<!-- form toolbar -->
+			<div class="row cls-toolbar-gray">
+				<div class="col-sm-9">
+					<button class="btn btn-primary btn-sm" ng-click="save()" ng-show="allowSave()">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Guardar
+					</button>
+					<button class="btn btn-default btn-sm" ng-click="close()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cerrar
+					</button>
+				</div>
+				<div class="col-sm-3 text-right">
+					<span class="cls-project-amount">$ {{ data.amount | number }}</span>
+				</div>
 			</div>
 		</div>
 
@@ -76,7 +105,7 @@
 					<a href="" aria-controls="members" role="tab" data-toggle="tab">Integrantes</a>
 				</li>
 				<li role="presentation" ng-class="{active: (tab == 'X')}" ng-click="tab = 'X'" ng-show="data.id">
-					<a href="" aria-controls="documents" role="tab" data-toggle="tab">Requisitos por Integrante</a>
+					<a href="" aria-controls="documents" role="tab" data-toggle="tab">Req. por Integrante</a>
 				</li>
 			</ul>
 
@@ -191,11 +220,13 @@
 							<th width="60" class="text-center">Pend.</th>
 						</thead>
 						<tbody>
-							<tr ng-repeat="(key, item) in data.members" ng-class="{'cls-selected' : (item.id == selectionMember.id)}">
+							<tr ng-repeat="(key, item) in data.members" 
+							    ng-click="selectMember(item)" 
+							    ng-class="{'cls-selected' : (item.id == selectionMember.id)}">
 								<td class="text-center">
 									<span class="label label-primary" ng-show="item.pivot.representative" title="Es representante">SI</span>
 								</td>
-								<td class="cls-pointer" ng-click="selectMember(item)">{{ item.name }}</td>
+								<td class="">{{ item.name }}</td>
 								<td class="text-center">
 									<span ng-show="getUnreceived(item)" class="badge" title="Docs. por recibir">{{ getUnreceived(item) }}</span>
 								</td>
@@ -212,10 +243,15 @@
 								<tr ng-repeat="(key, item) in data.requirements">
 									<td>{{ item.name }}</td>
 									<td width="70" class="text-center">
-										<span class="label label-default cls-pointer" 
-										      ng-hide="isReceived(item)" ng-click="changeReceived(item, 1)">Recibir</span>
-										<span class="label label-success cls-pointer" 
-										      ng-show="isReceived(item)" ng-click="changeReceived(item, 0)">Recibido</span>
+										<div ng-show="item.loading">
+											<img src="/images/loading.gif">
+										</div>
+										<div ng-hide="item.loading">
+											<span class="label label-default cls-pointer" 
+											      ng-hide="isReceived(item)" ng-click="changeReceived(item, 1)">Recibir</span>
+											<span class="label label-success cls-pointer" 
+											      ng-show="isReceived(item)" ng-click="changeReceived(item, 0)">Recibido</span>
+										</div>
 									</td>
 								</tr>
 							</tbody>
@@ -225,7 +261,4 @@
 			</div>
 		</div>
 	</form>
-
-	<!-- form toolbar -->
-	<div ng-include="tpls.form_toolbar"></div>
 </div>
