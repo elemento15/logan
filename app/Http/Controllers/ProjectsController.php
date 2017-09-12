@@ -28,7 +28,7 @@ class ProjectsController extends BaseController
     //                          'component_id','activity_id','project_date'];
     protected $storeFields  = ['name','code','location','has_act','has_evaluation','amount','comments',
                                'component_id','activity_id','project_date'];
-    protected $updateFields = ['name','code','location','amount','comments'];
+    protected $updateFields = ['name','code','location','amount','has_act','has_evaluation','comments'];
 
     protected $defaultNulls = ['location','comments'];
     protected $formRules = [

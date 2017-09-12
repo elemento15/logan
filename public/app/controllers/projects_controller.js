@@ -441,6 +441,14 @@ app.controller('ProjectsController', function ($scope, $http, $route, $location,
 		return val;
 	}
 
+	$scope.receiveAct = function (opt) {
+		$scope.data.has_act = opt;
+	}
+
+	$scope.receiveEvaluation = function (opt) {
+		$scope.data.has_evaluation = opt;
+	}
+
 
 	$scope.$on('$viewContentLoaded', function (view) {
 		$scope.getWindows();
